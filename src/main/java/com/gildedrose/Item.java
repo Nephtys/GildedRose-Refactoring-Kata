@@ -24,14 +24,12 @@ public class Item {
     }
 
     public void updateQuality() {
-        if (this.quality > 0) {
-            this.quality--;
-        }
-
         this.sellIn--;
 
-        if (this.sellIn < 0 && this.quality > 0) {
-            this.quality--;
+        this.quality = this.sellIn < 0 ? this.quality - 2 : this.quality - 1;
+
+        if (this.quality < 0) {
+            this.quality = 0;
         }
     }
 }

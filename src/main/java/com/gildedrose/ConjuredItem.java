@@ -8,7 +8,11 @@ public class ConjuredItem extends Item {
     @Override
     public void updateQuality() {
         this.sellIn--;
+
         this.quality = this.sellIn < 0 ? this.quality - 4 : this.quality - 2;
-        this.quality = this.quality < 0 ? 0 : this.quality;
+
+        if (this.quality < 0) {
+            this.quality = 0;
+        }
     }
 }

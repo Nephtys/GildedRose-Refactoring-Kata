@@ -7,14 +7,12 @@ public class AgedBrieItem extends Item {
 
     @Override
     public void updateQuality() {
-        if (this.quality < 50) {
-            this.quality++;
-        }
-
         this.sellIn--;
 
-        if (this.sellIn < 0 && this.quality < 50) {
-            this.quality++;
+        this.quality = this.sellIn < 0 ? this.quality + 2 : this.quality + 1;
+
+        if (this.quality > 50) {
+            this.quality = 50;
         }
     }
 }
