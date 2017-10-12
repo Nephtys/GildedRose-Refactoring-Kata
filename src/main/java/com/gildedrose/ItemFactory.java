@@ -4,15 +4,22 @@ public final class ItemFactory {
     private ItemFactory() {}
 
     public static Item build(String name, int sellIn, int quality) {
-        switch(name) {
-            case Item.AGED_BRIE:
-                return new AgedBrieItem(name, sellIn, quality);
-            case Item.BACKSTAGE_PASS:
-                return new BackstagePassItem(name, sellIn, quality);
-            case Item.SULFURAS:
-                return new SulfurasItem(name, sellIn, quality);
-            default:
-                return new Item(name, sellIn, quality);
+        if (Item.AGED_BRIE.equals(name)) {
+            return new AgedBrieItem(name, sellIn, quality);
         }
+
+        if (Item.BACKSTAGE_PASS.equals(name)) {
+            return new BackstagePassItem(name, sellIn, quality);
+        }
+
+        if (Item.SULFURAS.equals(name)) {
+            return new SulfurasItem(name, sellIn, quality);
+        }
+
+        if (name.startsWith(Item.CONJURED)) {
+            return new ConjuredItem(name, sellIn, quality);
+        }
+
+        return new Item(name, sellIn, quality);
     }
 }
